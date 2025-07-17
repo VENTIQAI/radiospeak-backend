@@ -1,34 +1,19 @@
-<<<<<<< HEAD
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-=======
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
->>>>>>> 1ff7e7f56068874e5c904ed4bc93841f7e1e7f7a
 import fetch from 'node-fetch';
 
 dotenv.config();
 
 const app = express();
-<<<<<<< HEAD
-const port = process.env.PORT || 3000;
-
-app.use(cors());
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send('Radiospeak backend running');
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-=======
 app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
+
+app.get('/', (req, res) => {
+  res.send('✅ Radiospeak backend is running');
+});
 
 app.post('/api/generate', async (req, res) => {
   const userMessage = req.body.message;
@@ -66,5 +51,5 @@ app.post('/api/generate', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`✅ Radiospeak backend running on port ${PORT}`);
->>>>>>> 1ff7e7f56068874e5c904ed4bc93841f7e1e7f7a
 });
+
