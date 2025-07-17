@@ -37,9 +37,14 @@ app.post('/api/generate', async (req, res) => {
     });
 
     const data = await response.json();
-    const message = data.choices?.[0]?.message?.content?.trim();
+    if (!data || !data.choices || !data.choices[0] || !data.choices[0].message || !data.choices[0].message.content) {
+  console.error("🧠 Unexpected OpenAI response format:", JSON.stringify(data, null, 2));
+  return res.status(500).json({ error: 'Unexpected OpenAI response format', data });
+}
 
-    if (!message) throw new Error("Invalid OpenAI response");
+const message = data.choices[0].message.content.trim();
+res.json({ reply: message });
+
 
     res.json({ reply: message });
 
